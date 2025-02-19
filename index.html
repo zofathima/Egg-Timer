@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Themed Homepage</title>
+    <style>
+        body {
+
+            background-color: #fff;
+<!--            color: #fff;-->
+            font-family: Arial, sans-serif;
+            text-align: center;
+
+
+        }
+        .image-container {
+    background-image: url('bg1.png'); /* Add the correct path to your image here */
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    padding: 20px;
+    height: 500px;
+    margin: 0 auto;
+    position: relative;
+    width: 500px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    /* Border styling */
+    border: 10px solid #a81ec9; /* Change color and size as needed */
+    border-radius: 10px; /* Optional: makes the edges rounded */
+}
+        .start-button {
+            background-color: transparent;
+            border: none;
+            border-radius: 5px;
+
+            bottom: 75px;
+            color: #000;
+            cursor: pointer;
+            font-size: 18px;
+            left: 80%;
+            padding: 30px 55px;
+            position: absolute;
+            text-align: center;
+            transform: translateX(-50%);
+        }
+        .start-button:hover {
+<!--            background-color: #ccc;-->
+        }
+        .egg_item{
+        width:240px;
+        height: 240px;
+        background-color: transparent;
+        cursor :pointer;
+        }
+        .timer {
+        font-size: 40px;
+        margin: 0px;
+
+         }
+    </style>
+</head>
+<body>
+<!--<h1>Welcome to the Star Themed Homepage</h1>-->
+<div  >
+    <h1 id="">Time</h1>
+    <p class="timer" id="timer"></p>
+
+</div>
+<div class="image-container">
+    <div id="soft" class=" egg_item" onclick="startEggTimer('soft')"></div>
+    <div  id="hard" class=" egg_item" onclick="startEggTimer('hard')"></div>
+    <div id="scrambled" class=" egg_item " onclick="startEggTimer('scrambled')"></div>
+    <div id="omlette" class=" egg_item" onclick="startEggTimer('omlette')"></div>
+<!--    <button class="start-button" onclick="alert('Button Clicked!')"></button>-->
+</div>
+
+<script>
+    let interval; // Store the timer interval globally
+
+    function startEggTimer(eggId) {
+        let duration = 0;
+
+        if (eggId == "soft") {
+            duration = 300; // 5 min
+        } else if (eggId == "hard") {
+            duration = 600; // 10 min
+        } else if (eggId == "scrambled") {
+            duration = 300; // 5 min
+        } else {
+            duration = 180; // 3 min
+        }
+
+        let display = document.getElementById("timer");
+
+        // Clear any existing timer before starting a new one
+        if (interval) {
+            clearInterval(interval);
+        }
+
+        startTimer(duration, display);
+    }
+
+    function startTimer(duration, display) {
+        let timer = duration, minutes, seconds;
+
+        interval = setInterval(() => {
+            minutes = Math.floor(timer / 60);
+            seconds = timer % 60;
+            display.textContent = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+
+            if (--timer < 0) {
+                clearInterval(interval);
+                display.textContent = "Time's up!";
+            }
+        }, 1000);
+    }
+</script>
+
+<!--<script>-->
+<!--    function startEggTimer(eggId) {-->
+
+<!--    let duration =0;-->
+<!--    if(eggId =="soft"){-->
+<!--    duration = 300;-->
+<!--    }else if(eggId =="hard"){-->
+<!--    duration = 600;-->
+<!--    }-->
+<!--    else if(eggId =="scrambled"){-->
+<!--    duration = 300;-->
+<!--    }-->
+<!--    else{-->
+<!--    duration =180;-->
+<!--    }-->
+<!--    let display = document.getElementById("timer");-->
+<!--            startTimer(duration, display);-->
+<!--  }-->
+
+<!--        function startTimer(duration, display) {-->
+<!--            let timer = duration, minutes, seconds;-->
+
+<!--            let interval = setInterval(() => {-->
+<!--                minutes = Math.floor(timer / 60);-->
+<!--                seconds = timer % 60;-->
+<!--                display.textContent = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;-->
+
+<!--                if (&#45;&#45;timer < 0) {-->
+<!--                    clearInterval(interval);-->
+<!--                    display.textContent = "Time's up!";-->
+<!--                }-->
+<!--            }, 1000);-->
+<!--    }-->
+
+<!--</script>-->
+
+</body>
+</html>
